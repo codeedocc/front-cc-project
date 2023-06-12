@@ -1,5 +1,11 @@
+import { Pages } from './pages'
+
 const App: React.FC = () => {
-  return <div>App</div>
+  return (
+    <div className="wrapper">
+      <Pages />
+    </div>
+  )
 }
 
 export default App
