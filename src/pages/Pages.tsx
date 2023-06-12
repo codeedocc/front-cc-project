@@ -1,5 +1,5 @@
+import { Advantages, FullName, Home, About } from './'
 import { Routes, Route } from 'react-router-dom'
-import { FullName, Home } from '../components'
 
 const Pages: React.FC = () => {
   return (
@@ -7,6 +7,8 @@ const Pages: React.FC = () => {
       <Routes>
         <Route path="/front-cc-project/" element={<Home />} />
         <Route path="/front-cc-project/fullName" element={<FullName />} />
+        <Route path="/front-cc-project/advantages" element={<Advantages />} />
+        <Route path="/front-cc-project/about" element={<About />} />
       </Routes>
     </div>
   )

@@ -1,4 +1,3 @@
-import Home from './Home'
-import FullName from './FullName'
+import ProgressBar from './ProgressBar'
 
-export { Home, FullName }
+export { ProgressBar }
