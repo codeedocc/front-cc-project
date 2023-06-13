@@ -1,13 +1,10 @@
-import { InfoInputs, ProgressBar } from '../components'
+import { BackNextButtons, InfoInputs, ProgressBar } from '../components'
 import { useState } from 'react'
 import { selectOptions } from '../assets/const/'
-import { useNavigate } from 'react-router-dom'
 import Select from 'react-select'
 import '../styles/fullName.scss'
 
 const FullName: React.FC = () => {
-  const navigate = useNavigate()
-
   const [selectedOption, setSelectedOption] = useState(null)
 
   const handleSelectChange = (e: any) => {
@@ -48,13 +45,10 @@ const FullName: React.FC = () => {
         </InfoInputs>
       </div>
 
-      <div className="back-next-buttons">
-        <button onClick={() => navigate('/front-cc-project/')}>Назад</button>
-
-        <button onClick={() => navigate('/front-cc-project/advantages')}>
-          Далее
-        </button>
-      </div>
+      <BackNextButtons
+        pathToBack={'/front-cc-project/'}
+        pathToNext={'/front-cc-project/advantages'}
+      />
     </div>
   )
 }

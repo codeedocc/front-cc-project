@@ -1,6 +1,16 @@
 * {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'SB Sans Interface';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
 }
 
 .wrapper {
@@ -12,12 +22,62 @@
     background: rgb(255, 255, 255);
     position: fixed;
     width: 80%;
-    height: 70%;
+    height: 90%;
     border-radius: 12px 12px 0px 0px;
 
     margin-top: 2%;
     margin-bottom: 10%;
     margin-left: 10%;
     margin-right: 10%;
+
+    .back-next-buttons {
+      position: absolute;
+      bottom: 60px;
+      margin-left: 110px;
+      margin-right: 110px;
+      display: flex;
+      justify-content: space-between;
+      width: calc(100% - 210px);
+
+      @include tablet {
+        bottom: 30px;
+        width: calc(100% - 80px);
+        margin-left: 40px;
+      }
+
+      button {
+        border-radius: 4px;
+        width: 73px;
+        height: 44px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        font-family: 'SB Sans Interface';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      button:first-of-type {
+        background: #fff;
+        border: 1px solid #5558fa;
+        color: #5558fa;
+
+        &:hover {
+          background: #5558fa3f;
+        }
+      }
+
+      button:last-of-type {
+        background: #5558fa;
+        border: none;
+        color: #fff;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
   }
 }

@@ -7,3 +7,8 @@ interface Pages {
 interface DotConfigurations {
   [key: string]: string[]
 }
+
+interface IBackNextButtons {
+  pathToBack: string
+  pathToNext: string
+}
