@@ -1,4 +1,5 @@
 import { current_dot, finished_dot, not_active_dot } from '../images'
+import { useLocation } from 'react-router-dom'
 
 export const pages: Pages[] = [
   { path: '/front-cc-project/fullName', label: 'fullName', percentage: 0 },
@@ -16,6 +17,12 @@ export const dotConfigurations: DotConfigurations = {
   about: [finished_dot, finished_dot, current_dot],
 }
 
-export const matchingPage = pages.find(
-  (page) => page.path === location.pathname
-)
+export function getMatchingPage() {
+  const location = useLocation()
+  return pages.find((page) => page.path === location.pathname)
+}
+
+export const selectOptions = [
+  { value: 'man', label: 'Man' },
+  { value: 'woman', label: 'Woman' },
+]

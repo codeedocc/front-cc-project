@@ -1,5 +1,6 @@
 import { folder_icon, user_avatar } from '../assets/images'
 import { useNavigate } from 'react-router-dom'
+import { InfoInputs } from '../components'
 import '../styles/home.scss'
 
 const Home: React.FC = () => {
@@ -37,7 +38,7 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <div className="info-inputs">
+      <InfoInputs>
         <span>
           <p>Номер телефона</p>
           <input type="tel" value={'+79991567441'} disabled />
@@ -47,7 +48,7 @@ const Home: React.FC = () => {
           <p>Email</p>
           <input type="email" value={'newwavecfy@gmail.com'} disabled />
         </span>
-      </div>
+      </InfoInputs>
 
       <div className="start-button">
         <button onClick={() => navigate('/front-cc-project/fullName')}>

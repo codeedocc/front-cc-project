@@ -1,3 +1,9 @@
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
 .progress-bar {
   position: relative;
   background: #ebebeb;
@@ -5,6 +11,11 @@
   margin-top: 66px;
   margin-right: 110px;
   margin-left: 110px;
+
+  @include tablet {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
 
   .progress {
     position: absolute;
@@ -22,6 +33,19 @@
     .dots {
       display: flex;
       justify-content: space-between;
+    }
+
+    .numbers {
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      color: #5558fa;
+
+      font-family: 'SB Sans Interface';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
     }
   }
 }

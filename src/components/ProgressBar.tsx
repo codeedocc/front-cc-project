@@ -1,7 +1,9 @@
+import { dotConfigurations, getMatchingPage } from '../assets/const'
 import '../styles/progressBar.scss'
-import { dotConfigurations, matchingPage } from '../assets/const'
 
 const ProgressBar: React.FC = () => {
+  const matchingPage = getMatchingPage()
+
   return (
     <>
       {matchingPage && (
@@ -15,6 +17,11 @@ const ProgressBar: React.FC = () => {
               {dotConfigurations[matchingPage.label].map((dot, index) => (
                 <img key={index} src={dot} alt={`dot_${index}`} />
               ))}
+            </div>
+            <div className="numbers">
+              <p>1</p>
+              <p>2</p>
+              <p>3</p>
             </div>
           </div>
         </div>

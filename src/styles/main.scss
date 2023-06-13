@@ -2,3 +2,22 @@
   margin: 0;
   font-family: 'Open Sans', sans-serif;
 }
+
+.wrapper {
+  background: rgb(244, 244, 245);
+  height: 100vh;
+  width: 100vw;
+
+  .main-container {
+    background: rgb(255, 255, 255);
+    position: fixed;
+    width: 80%;
+    height: 70%;
+    border-radius: 12px 12px 0px 0px;
+
+    margin-top: 2%;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
