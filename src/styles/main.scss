@@ -7,6 +7,19 @@
   line-height: 20px;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bbbbbb;
+}
+
+::-webkit-scrollbar-track {
+  background: #e7e6e6;
+}
+
 @mixin tablet {
   @media screen and (max-width: 768px) {
     @content;

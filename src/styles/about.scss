@@ -1,0 +1,37 @@
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+.about-wrapper {
+  position: relative;
+  height: calc(100% - 65px);
+
+  .about-section {
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+    margin-right: 110px;
+    margin-left: 86px;
+    padding-left: 24px;
+    height: calc(100% - 90px);
+
+    @include tablet {
+      margin-left: 18px;
+      width: calc(100% - 80px);
+    }
+
+    p {
+      padding-bottom: 8px;
+    }
+
+    textarea {
+      border: 1px solid #d3d1d1;
+      resize: none;
+      outline: none;
+      background: none;
+      height: 84px;
+    }
+  }
+}

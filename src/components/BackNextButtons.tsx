@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 const BackNextButtons: React.FC<IBackNextButtons> = ({
   pathToBack,
   pathToNext,
+  isDone,
 }) => {
   const navigate = useNavigate()
 
@@ -10,7 +11,11 @@ const BackNextButtons: React.FC<IBackNextButtons> = ({
     <div className="back-next-buttons">
       <button onClick={() => navigate(pathToBack)}>Назад</button>
 
-      <button onClick={() => navigate(pathToNext)}>Далее</button>
+      {pathToNext && (
+        <button onClick={() => navigate(pathToNext)}>Далее</button>
+      )}
+
+      {isDone && <button onClick={() => console.log('')}>Отправить</button>}
     </div>
   )
 }

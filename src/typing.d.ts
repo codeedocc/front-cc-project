@@ -10,5 +10,6 @@ interface DotConfigurations {
 
 interface IBackNextButtons {
   pathToBack: string
-  pathToNext: string
+  pathToNext?: string
+  isDone?: boolean
 }
