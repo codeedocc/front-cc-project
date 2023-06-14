@@ -6,6 +6,9 @@ import current_dot from './current-dot.svg'
 import finished_dot from './finished-dot.svg'
 import trash_icon from './trash-icon.svg'
 import plus_icon from './plus-icon.svg'
+import success_icon from './success-icon.svg'
+import error_icon from './error-icon.svg'
+import cross_icon from './cross-icon.svg'
 
 export {
   folder_icon,
@@ -16,4 +19,7 @@ export {
   finished_dot,
   trash_icon,
   plus_icon,
+  success_icon,
+  error_icon,
+  cross_icon,
 }

@@ -13,3 +13,8 @@ interface IBackNextButtons {
   pathToNext?: string
   isDone?: boolean
 }
+
+interface IModal {
+  children: ReactNode
+  isOpenFav?: boolean
+}
