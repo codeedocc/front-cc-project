@@ -1,11 +1,11 @@
 import { cross_icon, error_icon, success_icon } from '../../assets/images'
 import { BackNextButtons, Modal, ProgressBar } from '../../shared'
 import { useEffect, useRef, useState } from 'react'
+import { useSendDataMutation } from '../../store/user/user.api'
+import { useAppSelector } from '../../hooks/redux'
 import { useNavigate } from 'react-router-dom'
 import { useActions } from '../../hooks/actions'
 import './about.scss'
-import { useAppSelector } from '../../hooks/redux'
-import { useSendDataMutation } from '../../store/user/user.api'
 import {
   phone,
   email,
@@ -22,21 +22,20 @@ import {
 const About: React.FC = () => {
   const navigate = useNavigate()
 
-  const { about } = useAppSelector((state) => state.user)
-  const { setAbout } = useActions()
-
-  const [isFormCompleted, setIsFormCompleted] = useState(true)
-  const [isError, setIsError] = useState(false)
+  const [isFormCompleted] = useState<boolean>(true)
+  const [isError] = useState<boolean>(false)
 
   const aboutRef = useRef<HTMLTextAreaElement | null>(null)
 
-  const { setisSendingData } = useActions()
+  const { about } = useAppSelector((state) => state.user)
+
+  const { setisSendingData, setAbout } = useActions()
 
   const [sendData, { data }] = useSendDataMutation()
 
   const handleDone = () => {
-    navigate('/front-cc-project/')
     setisSendingData(false)
+    navigate('/front-cc-project/')
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -78,9 +77,6 @@ const About: React.FC = () => {
       aboutRef.current.focus()
     }
   }, [])
-
-  console.log(setIsFormCompleted)
-  console.log(setIsError)
 
   return (
     <div className="about-wrapper">

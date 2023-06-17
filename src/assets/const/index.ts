@@ -8,7 +8,7 @@ export const dotConfigurations: IDotConfigurations = {
   about: [finished_dot, finished_dot, current_dot],
 }
 
-export const pages: IPages[] = [
+export const pageRoutes: IPages[] = [
   { path: '/front-cc-project/fullName', label: 'fullName', percentage: 0 },
   {
     path: '/front-cc-project/advantages',
@@ -20,7 +20,7 @@ export const pages: IPages[] = [
 
 export function getMatchingPage() {
   const location = useLocation()
-  return pages.find((page) => page.path === location.pathname)
+  return pageRoutes.find((page) => page.path === location.pathname)
 }
 
 export const selectOptions = [
@@ -28,7 +28,7 @@ export const selectOptions = [
   { value: 'woman', label: 'Woman' },
 ]
 
-export const schemaHome = yup.object().shape({
+export const SCHEMA_HOME_PAGE = yup.object().shape({
   phone: yup
     .string()
     .matches(
@@ -42,7 +42,7 @@ export const schemaHome = yup.object().shape({
     .required('Поле email обязательно'),
 })
 
-export const schemaFullName = yup.object().shape({
+export const SCHEMA_FULLNAME_PAGE = yup.object().shape({
   nickname: yup
     .string()
     .matches(
@@ -61,7 +61,6 @@ export const schemaFullName = yup.object().shape({
     .matches(/^[a-zA-Zа-яА-Я]*$/, 'Только буквы разрешены')
     .max(50, 'Максимальная длина 50 символов')
     .required('Это поле нужно заполнить'),
-  // sex: yup.string().notOneOf([''], 'Выберите пол').nullable(),
   sex: yup.string().required('Выберите пол'),
 })
 

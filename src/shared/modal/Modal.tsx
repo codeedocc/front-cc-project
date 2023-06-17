@@ -3,9 +3,9 @@ import { useActions } from '../../hooks/actions'
 import './modal.scss'
 
 const Modal: React.FC<IModal> = ({ children }) => {
-  const { closeModal } = useActions()
-
   const { isSendingData } = useAppSelector((state) => state.modal)
+
+  const { closeModal } = useActions()
 
   return (
     <div

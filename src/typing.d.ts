@@ -56,3 +56,7 @@ interface IModal {
 interface IRegister {
   register: any
 }
+
+interface IInfoInputs {
+  children: ReactNode
+}

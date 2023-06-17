@@ -6,14 +6,14 @@ import { useState } from 'react'
 import './advantages.scss'
 
 const Advantages: React.FC = () => {
+  const [isFormCompleted] = useState<boolean>(true)
+  const [nextId, setNextId] = useState<number>(1)
+
   const { advantages, checkboxGroup, radioGroup } = useAppSelector(
     (state) => state.user
   )
 
   const { setAdvantages, setCheckboxGroup, setRadioGroup } = useActions()
-
-  const [isFormCompleted, setisFormCompleted] = useState<boolean>(true)
-  const [nextId, setNextId] = useState<number>(1)
 
   const handleAddAdvantage = () => {
     if (advantages.length < 3) {
@@ -37,8 +37,6 @@ const Advantages: React.FC = () => {
     )
     setAdvantages(updatedAdvantages)
   }
-
-  console.log(setisFormCompleted)
 
   return (
     <div className="avantages-wrapper">

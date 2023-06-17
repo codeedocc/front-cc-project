@@ -1,13 +1,12 @@
 import { folder_icon, user_avatar } from '../../assets/images'
+import { InfoInputs, MaskedInput } from '../../shared'
+import { SCHEMA_HOME_PAGE } from '../../assets/const'
+import { useAppSelector } from '../../hooks/redux'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
-import { InfoInputs } from '../../shared'
-import { schemaHome } from '../../assets/const'
+import { useActions } from '../../hooks/actions'
 import { useForm } from 'react-hook-form'
 import './home.scss'
-import { useAppSelector } from '../../hooks/redux'
-import { useActions } from '../../hooks/actions'
-import { MaskedInput } from '..'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -20,7 +19,7 @@ const Home: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schemaHome),
+    resolver: yupResolver(SCHEMA_HOME_PAGE),
     defaultValues: {
       email: email,
       phone: phone,

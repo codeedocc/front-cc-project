@@ -1,6 +1,6 @@
 import { BackNextButtons, InfoInputs, ProgressBar } from '../../shared'
+import { SCHEMA_FULLNAME_PAGE } from '../../assets/const'
 import Select, { SingleValue } from 'react-select'
-import { schemaFullName } from '../../assets/const'
 import { useAppSelector } from '../../hooks/redux'
 import { selectOptions } from '../../assets/const'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,6 +11,8 @@ import './fullName.scss'
 
 const FullName: React.FC = () => {
   const { nickname, name, surname, sex } = useAppSelector((state) => state.user)
+
+  const { setNickname, setName, setSurname, setSex } = useActions()
 
   const [selectedOption, setSelectedOption] = useState<{
     value: string
@@ -26,8 +28,6 @@ const FullName: React.FC = () => {
   })
   const [isFormCompleted, setIsFormCompleted] = useState<boolean>(false)
 
-  const { setNickname, setName, setSurname, setSex } = useActions()
-
   const {
     setError,
     setValue,
@@ -35,7 +35,7 @@ const FullName: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schemaFullName),
+    resolver: yupResolver(SCHEMA_FULLNAME_PAGE),
     defaultValues: {
       nickname: nickname,
       name: name,
