@@ -15,7 +15,7 @@
     margin-right: 110px;
     margin-left: 86px;
     padding-left: 24px;
-    height: calc(100% - 90px);
+    position: relative;
 
     @include tablet {
       margin-left: 18px;
@@ -32,6 +32,13 @@
       outline: none;
       background: none;
       height: 84px;
+      padding-left: 10px;
+    }
+
+    span {
+      position: absolute;
+      right: 5px;
+      bottom: -30px;
     }
   }
 }

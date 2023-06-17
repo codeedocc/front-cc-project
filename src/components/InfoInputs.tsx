@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import '../styles/infoInputs.scss'
 
 interface IInfoInputs {
   children: ReactNode

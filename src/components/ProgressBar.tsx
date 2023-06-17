@@ -12,12 +12,14 @@ const ProgressBar: React.FC = () => {
             className="progress"
             style={{ width: `${matchingPage.percentage}%` }}
           />
+
           <div className="levels">
             <div className="dots">
               {dotConfigurations[matchingPage.label].map((dot, index) => (
                 <img key={index} src={dot} alt={`dot_${index}`} />
               ))}
             </div>
+
             <div className="numbers">
               <p>1</p>
               <p>2</p>

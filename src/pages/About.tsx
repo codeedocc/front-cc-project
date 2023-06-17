@@ -1,22 +1,34 @@
-import { useEffect, useRef, useState } from 'react'
-import { BackNextButtons, Modal, ProgressBar } from '../components'
-import '../styles/about.scss'
 import { cross_icon, error_icon, success_icon } from '../assets/images'
+import { BackNextButtons, Modal, ProgressBar } from '../components'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useActions } from '../hooks/actions'
+import '../styles/about.scss'
 
 const About: React.FC = () => {
   const navigate = useNavigate()
-  const { setisSendingData } = useActions()
 
+  const [isFormCompleted, setIsFormCompleted] = useState(true)
   const [isError, setIsError] = useState(false)
   const [about, setAbout] = useState('')
+
   const aboutRef = useRef<HTMLTextAreaElement | null>(null)
+
+  const { setisSendingData } = useActions()
 
   const handleDone = () => {
     navigate('/front-cc-project/')
     setisSendingData(false)
   }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const inputValue = e.target.value
+    const truncatedValue = inputValue.slice(0, 200)
+
+    setAbout(truncatedValue)
+  }
+
+  const characterCount = about.replace(/\s/g, '').length
 
   useEffect(() => {
     if (aboutRef.current !== null && about === '') {
@@ -32,16 +44,19 @@ const About: React.FC = () => {
         <p>About</p>
 
         <textarea
-          placeholder="Placeholder"
+          placeholder="Начните печатать..."
           value={about}
-          onChange={(e) => setAbout!(e.target.value)}
+          onChange={handleInputChange}
           ref={aboutRef}
         />
+
+        <span className="character-counter">{characterCount}/200</span>
       </div>
 
       <BackNextButtons
         pathToBack={'/front-cc-project/advantages'}
         isDone={true}
+        isFormCompleted={isFormCompleted}
       />
 
       {isError && (

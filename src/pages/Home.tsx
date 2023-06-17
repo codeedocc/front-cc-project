@@ -1,10 +1,31 @@
 import { folder_icon, user_avatar } from '../assets/images'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
 import { InfoInputs } from '../components'
+import { schemaHome } from '../assets/const'
+import { useForm } from 'react-hook-form'
+import InputMask from 'react-input-mask'
 import '../styles/home.scss'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaHome),
+    defaultValues: {
+      email: '',
+      phone: '',
+    },
+  })
+
+  const onSubmit = (data: any) => {
+    navigate('/front-cc-project/fullName')
+    console.log(data)
+  }
 
   return (
     <>
@@ -39,22 +60,32 @@ const Home: React.FC = () => {
       </div>
 
       <InfoInputs>
-        <span>
-          <p>Номер телефона</p>
-          <input type="tel" value={'+79991567441'} disabled />
-        </span>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <span>
+            <p>Номер телефона</p>
 
-        <span>
-          <p>Email</p>
-          <input type="email" value={'newwavecfy@gmail.com'} disabled />
-        </span>
+            <InputMask
+              mask="+7 (999) 999-99-99"
+              maskChar=""
+              {...register('phone')}
+            >
+              {(inputProps) => <input {...inputProps} type="tel" />}
+            </InputMask>
+
+            {errors.phone && <p className="error">{errors.phone.message}</p>}
+          </span>
+
+          <span>
+            <p>Email</p>
+            <input type="email" {...register('email')} />
+            {errors.email && <p className="error">{errors.email.message}</p>}
+          </span>
+
+          <div className="start-button">
+            <button type="submit">Начать</button>
+          </div>
+        </form>
       </InfoInputs>
-
-      <div className="start-button">
-        <button onClick={() => navigate('/front-cc-project/fullName')}>
-          Начать
-        </button>
-      </div>
     </>
   )
 }

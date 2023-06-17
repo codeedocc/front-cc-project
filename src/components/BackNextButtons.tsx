@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { useActions } from '../hooks/actions'
+import '../styles/backNextButtons.scss'
 
 const BackNextButtons: React.FC<IBackNextButtons> = ({
   pathToBack,
   pathToNext,
   isDone,
+  isFormCompleted,
 }) => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -29,11 +31,11 @@ const BackNextButtons: React.FC<IBackNextButtons> = ({
     >
       <button onClick={() => navigate(pathToBack)}>Назад</button>
 
-      {pathToNext && (
+      {pathToNext && isFormCompleted && (
         <button onClick={() => navigate(pathToNext)}>Далее</button>
       )}
 
-      {isDone && (
+      {isDone && isFormCompleted && (
         <button onClick={() => setisSendingData(true)}>Отправить</button>
       )}
     </div>
