@@ -1,6 +1,6 @@
-import { useAppSelector } from '../hooks/redux'
-import { useActions } from '../hooks/actions'
-import '../styles/modal.scss'
+import { useAppSelector } from '../../hooks/redux'
+import { useActions } from '../../hooks/actions'
+import './modal.scss'
 
 const Modal: React.FC<IModal> = ({ children }) => {
   const { closeModal } = useActions()

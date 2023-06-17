@@ -1,4 +1,4 @@
-import { trash_icon } from '../assets/images'
+import { trash_icon } from '../../assets/images'
 
 const AdvantagesInput: React.FC<IAdvantagesInput> = ({
   id,

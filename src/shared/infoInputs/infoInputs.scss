@@ -22,17 +22,15 @@
   }
 
   span {
-    p:first-of-type {
+    p {
       padding-top: 24px;
-    }
-
-    p:last-of-type {
-      padding-top: 10px;
       padding-bottom: 10px;
     }
   }
 
   .error {
+    padding-top: 8px;
     color: red;
+    padding-bottom: 0px;
   }
 }

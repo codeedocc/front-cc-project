@@ -1,4 +1,4 @@
-import { Advantages, FullName, Home, About } from './'
+import { About, Advantages, FullName, Home } from '../entities'
 import { Routes, Route } from 'react-router-dom'
 
 const Pages: React.FC = () => {

@@ -1,14 +1,20 @@
-import { folder_icon, user_avatar } from '../assets/images'
+import { folder_icon, user_avatar } from '../../assets/images'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
-import { InfoInputs } from '../components'
-import { schemaHome } from '../assets/const'
+import { InfoInputs } from '../../shared'
+import { schemaHome } from '../../assets/const'
 import { useForm } from 'react-hook-form'
 import InputMask from 'react-input-mask'
-import '../styles/home.scss'
+import './home.scss'
+import { useAppSelector } from '../../hooks/redux'
+import { useActions } from '../../hooks/actions'
+import { useEffect } from 'react'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
+
+  const { phone, email } = useAppSelector((state) => state.user)
+  const { setPhone, setEmail } = useActions()
 
   const {
     register,
@@ -17,14 +23,16 @@ const Home: React.FC = () => {
   } = useForm({
     resolver: yupResolver(schemaHome),
     defaultValues: {
-      email: '',
-      phone: '',
+      email: email,
+      phone: phone,
     },
   })
 
   const onSubmit = (data: any) => {
+    setEmail(data.email)
+    setPhone(data.phone)
+
     navigate('/front-cc-project/fullName')
-    console.log(data)
   }
 
   return (
@@ -69,7 +77,13 @@ const Home: React.FC = () => {
               maskChar=""
               {...register('phone')}
             >
-              {(inputProps) => <input {...inputProps} type="tel" />}
+              {(inputProps) => (
+                <input
+                  {...inputProps}
+                  placeholder="Введите номер телефона"
+                  type="tel"
+                />
+              )}
             </InputMask>
 
             {errors.phone && <p className="error">{errors.phone.message}</p>}
@@ -77,7 +91,11 @@ const Home: React.FC = () => {
 
           <span>
             <p>Email</p>
-            <input type="email" {...register('email')} />
+            <input
+              type="email"
+              {...register('email')}
+              placeholder="Введите email"
+            />
             {errors.email && <p className="error">{errors.email.message}</p>}
           </span>
 

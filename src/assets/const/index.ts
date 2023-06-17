@@ -61,4 +61,6 @@ export const schemaFullName = yup.object().shape({
     .matches(/^[a-zA-Zа-яА-Я]*$/, 'Только буквы разрешены')
     .max(50, 'Максимальная длина 50 символов')
     .required('Это поле нужно заполнить'),
+  // sex: yup.string().notOneOf([''], 'Выберите пол').nullable(),
+  sex: yup.string().required('Выберите пол'),
 })

@@ -20,6 +20,26 @@ interface IModal {
   isOpenFav?: boolean
 }
 
+interface IInitialState {
+  isSendingData: boolean
+}
+
+interface IUser {
+  phone: string
+  email: string
+  nickname: string
+  name: string
+  surname: string
+  sex: string
+  advantages: {
+    id: string
+    value: string
+  }[]
+  checkboxGroup: boolean[]
+  radioGroup: boolean[]
+  about: string
+}
+
 interface IAdvantagesInput {
   id: string
   value: string

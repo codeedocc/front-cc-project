@@ -1,16 +1,19 @@
-import { cross_icon, error_icon, success_icon } from '../assets/images'
-import { BackNextButtons, Modal, ProgressBar } from '../components'
+import { cross_icon, error_icon, success_icon } from '../../assets/images'
+import { BackNextButtons, Modal, ProgressBar } from '../../shared'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useActions } from '../hooks/actions'
-import '../styles/about.scss'
+import { useActions } from '../../hooks/actions'
+import './about.scss'
+import { useAppSelector } from '../../hooks/redux'
 
 const About: React.FC = () => {
   const navigate = useNavigate()
 
+  const { about } = useAppSelector((state) => state.user)
+  const { setAbout } = useActions()
+
   const [isFormCompleted, setIsFormCompleted] = useState(true)
   const [isError, setIsError] = useState(false)
-  const [about, setAbout] = useState('')
 
   const aboutRef = useRef<HTMLTextAreaElement | null>(null)
 
@@ -23,9 +26,14 @@ const About: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputValue = e.target.value
-    const truncatedValue = inputValue.slice(0, 200)
+    const characterCount = inputValue.replace(/\s/g, '').length
 
-    setAbout(truncatedValue)
+    if (characterCount > 200) {
+      e.preventDefault()
+      return
+    }
+
+    setAbout(inputValue)
   }
 
   const characterCount = about.replace(/\s/g, '').length

@@ -1,5 +1,5 @@
-import { dotConfigurations, getMatchingPage } from '../assets/const'
-import '../styles/progressBar.scss'
+import { dotConfigurations, getMatchingPage } from '../../assets/const'
+import './progressBar.scss'
 
 const ProgressBar: React.FC = () => {
   const matchingPage = getMatchingPage()

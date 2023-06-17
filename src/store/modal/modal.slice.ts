@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-interface IInitialState {
-  isSendingData: boolean
-}
-
 const initialState: IInitialState = {
   isSendingData: false,
 }

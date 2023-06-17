@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useActions } from '../hooks/actions'
-import '../styles/backNextButtons.scss'
+import { useActions } from '../../hooks/actions'
+import './backNextButtons.scss'
 
 const BackNextButtons: React.FC<IBackNextButtons> = ({
   pathToBack,

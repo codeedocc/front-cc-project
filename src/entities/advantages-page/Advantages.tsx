@@ -1,15 +1,17 @@
-import { AdvantagesInput, BackNextButtons, ProgressBar } from '../components'
-import { v4 as uuidv4 } from 'uuid'
-import { plus_icon } from '../assets/images'
+import { AdvantagesInput, BackNextButtons, ProgressBar } from '../../shared'
+import { useAppSelector } from '../../hooks/redux'
+import { useActions } from '../../hooks/actions'
+import { plus_icon } from '../../assets/images'
 import { useState } from 'react'
-import '../styles/advantages.scss'
+import './advantages.scss'
 
 const Advantages: React.FC = () => {
-  const [advantages, setAdvantages] = useState<{ id: string; value: string }[]>(
-    [{ id: uuidv4(), value: '' }]
+  const { advantages, checkboxGroup, radioGroup } = useAppSelector(
+    (state) => state.user
   )
-  const [checkboxInputs, setCheckboxInputs] = useState<string[]>(['', '', ''])
-  const [radioInputs, setRadioInputs] = useState<string[]>(['', '', ''])
+
+  const { setAdvantages, setCheckboxGroup, setRadioGroup } = useActions()
+
   const [isFormCompleted, setisFormCompleted] = useState<boolean>(true)
   const [nextId, setNextId] = useState<number>(1)
 
@@ -65,23 +67,48 @@ const Advantages: React.FC = () => {
       <div className="checkbox-group">
         <p>Checkbox group</p>
 
-        {checkboxInputs.map((input, index) => (
-          <div key={index}>
-            <input type="checkbox" id={`checkbox${index + 1}`} />
-            <br />
-          </div>
-        ))}
+        {Array.isArray(checkboxGroup) &&
+          checkboxGroup.map((input, index) => (
+            <div key={index}>
+              <input
+                type="checkbox"
+                id={`checkbox${index + 1}`}
+                checked={input}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setCheckboxGroup([
+                    ...checkboxGroup.slice(0, index),
+                    e.target.checked,
+                    ...checkboxGroup.slice(index + 1),
+                  ])
+                }
+              />
+              <br />
+            </div>
+          ))}
       </div>
 
       <div className="radio-group">
         <p>Radio group</p>
 
-        {radioInputs.map((input, index) => (
-          <div key={index}>
-            <input type="radio" id={`radio${index + 1}`} name="radioGroup" />
-            <br />
-          </div>
-        ))}
+        {Array.isArray(radioGroup) &&
+          radioGroup.map((input, index) => (
+            <div key={index}>
+              <input
+                type="radio"
+                id={`radio${index + 1}`}
+                name="radioGroup"
+                checked={input}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setRadioGroup([
+                    ...radioGroup.slice(0, index),
+                    e.target.checked,
+                    ...radioGroup.slice(index + 1),
+                  ])
+                }
+              />
+              <br />
+            </div>
+          ))}
       </div>
 
       <BackNextButtons

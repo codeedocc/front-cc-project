@@ -1,29 +1,46 @@
-import { BackNextButtons, InfoInputs, ProgressBar } from '../components'
+import { BackNextButtons, InfoInputs, ProgressBar } from '../../shared'
 import Select, { SingleValue } from 'react-select'
-import { schemaFullName } from '../assets/const/'
-import { selectOptions } from '../assets/const/'
+import { schemaFullName } from '../../assets/const'
+import { useAppSelector } from '../../hooks/redux'
+import { selectOptions } from '../../assets/const'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useActions } from '../../hooks/actions'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import '../styles/fullName.scss'
+import './fullName.scss'
 
 const FullName: React.FC = () => {
+  const { nickname, name, surname, sex } = useAppSelector((state) => state.user)
+
   const [selectedOption, setSelectedOption] = useState<{
     value: string
     label: string
-  } | null>(null)
+  } | null>(() => {
+    if (sex) {
+      return {
+        value: sex,
+        label: sex.charAt(0).toUpperCase() + sex.slice(1),
+      }
+    }
+    return null
+  })
   const [isFormCompleted, setIsFormCompleted] = useState<boolean>(false)
 
+  const { setNickname, setName, setSurname, setSex } = useActions()
+
   const {
+    setError,
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaFullName),
     defaultValues: {
-      nickname: '',
-      name: '',
-      surname: '',
+      nickname: nickname,
+      name: name,
+      surname: surname,
+      sex: sex,
     },
   })
 
@@ -34,10 +51,17 @@ const FullName: React.FC = () => {
     } | null>
   ) => {
     setSelectedOption(e)
+    setError('sex', { message: '' })
+    setValue('sex', e!.value)
   }
 
   const onSubmit = (data: any) => {
     setIsFormCompleted(true)
+    setNickname(data.nickname)
+    setName(data.name)
+    setSurname(data.surname)
+    setSex(data.sex)
+
     console.log(data)
   }
 
@@ -53,7 +77,7 @@ const FullName: React.FC = () => {
               <input
                 type="text"
                 {...register('nickname')}
-                placeholder="Enter nickname"
+                placeholder="Введите nickname"
               />
 
               {errors.nickname && (
@@ -66,7 +90,7 @@ const FullName: React.FC = () => {
               <input
                 type="text"
                 {...register('name')}
-                placeholder="Enter name"
+                placeholder="Введите name"
               />
 
               {errors.name && <p className="error">{errors.name.message}</p>}
@@ -77,7 +101,7 @@ const FullName: React.FC = () => {
               <input
                 type="text"
                 {...register('surname')}
-                placeholder="Enter surname"
+                placeholder="Введите surname"
               />
 
               {errors.surname && (
@@ -93,7 +117,10 @@ const FullName: React.FC = () => {
                 options={selectOptions}
                 className="select"
                 onChange={(e) => handleSelectChange(e)}
+                placeholder="Выберите пол"
               />
+
+              {errors.sex && <p className="error">{errors.sex.message}</p>}
             </span>
 
             <div className="save-form-button">
