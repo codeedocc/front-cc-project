@@ -64,3 +64,14 @@ export const schemaFullName = yup.object().shape({
   // sex: yup.string().notOneOf([''], 'Выберите пол').nullable(),
   sex: yup.string().required('Выберите пол'),
 })
+
+export const phone = localStorage.getItem('phone')
+export const email = localStorage.getItem('email')
+export const nickname = localStorage.getItem('nickname')
+export const name = localStorage.getItem('name')
+export const surname = localStorage.getItem('surname')
+export const sex = localStorage.getItem('sex')
+export const advantages = localStorage.getItem('advantages')
+export const checkboxGroup = localStorage.getItem('checkboxGroup')
+export const radioGroup = localStorage.getItem('radioGroup')
+export const aboutData = localStorage.getItem('about')

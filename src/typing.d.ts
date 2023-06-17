@@ -13,11 +13,7 @@ interface IBackNextButtons {
   pathToNext?: string
   isDone?: boolean
   isFormCompleted: boolean
-}
-
-interface IModal {
-  children: ReactNode
-  isOpenFav?: boolean
+  startSendProcess?: () => Promise<void>
 }
 
 interface IInitialState {
@@ -45,4 +41,18 @@ interface IAdvantagesInput {
   value: string
   onChange: (id: string, value: string) => void
   onRemove: (id: string) => void
+}
+
+interface ResponseData {
+  status: string
+  message: string
+}
+
+interface IModal {
+  children: ReactNode
+  isOpenFav?: boolean
+}
+
+interface IRegister {
+  register: any
 }

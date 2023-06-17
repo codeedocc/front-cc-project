@@ -1,6 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useActions } from '../../hooks/actions'
 import './backNextButtons.scss'
 
 const BackNextButtons: React.FC<IBackNextButtons> = ({
@@ -8,13 +7,12 @@ const BackNextButtons: React.FC<IBackNextButtons> = ({
   pathToNext,
   isDone,
   isFormCompleted,
+  startSendProcess,
 }) => {
   const navigate = useNavigate()
   const location = useLocation()
 
   const [isSending, setIsSending] = useState<boolean>(true)
-
-  const { setisSendingData } = useActions()
 
   useEffect(() => {
     if (location.pathname === '/front-cc-project/about') {
@@ -36,7 +34,7 @@ const BackNextButtons: React.FC<IBackNextButtons> = ({
       )}
 
       {isDone && isFormCompleted && (
-        <button onClick={() => setisSendingData(true)}>Отправить</button>
+        <button onClick={() => startSendProcess!()}>Отправить</button>
       )}
     </div>
   )

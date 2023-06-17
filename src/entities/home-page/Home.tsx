@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { InfoInputs } from '../../shared'
 import { schemaHome } from '../../assets/const'
 import { useForm } from 'react-hook-form'
-import InputMask from 'react-input-mask'
 import './home.scss'
 import { useAppSelector } from '../../hooks/redux'
 import { useActions } from '../../hooks/actions'
-import { useEffect } from 'react'
+import { MaskedInput } from '..'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -71,20 +70,7 @@ const Home: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <span>
             <p>Номер телефона</p>
-
-            <InputMask
-              mask="+7 (999) 999-99-99"
-              maskChar=""
-              {...register('phone')}
-            >
-              {(inputProps) => (
-                <input
-                  {...inputProps}
-                  placeholder="Введите номер телефона"
-                  type="tel"
-                />
-              )}
-            </InputMask>
+            <MaskedInput register={register} />
 
             {errors.phone && <p className="error">{errors.phone.message}</p>}
           </span>

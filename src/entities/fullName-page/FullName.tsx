@@ -61,8 +61,6 @@ const FullName: React.FC = () => {
     setName(data.name)
     setSurname(data.surname)
     setSex(data.sex)
-
-    console.log(data)
   }
 
   return (

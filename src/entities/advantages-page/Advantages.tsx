@@ -38,6 +38,8 @@ const Advantages: React.FC = () => {
     setAdvantages(updatedAdvantages)
   }
 
+  console.log(setisFormCompleted)
+
   return (
     <div className="avantages-wrapper">
       <ProgressBar />

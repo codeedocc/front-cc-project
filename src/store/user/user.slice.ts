@@ -6,7 +6,7 @@ const initialState: IUser = {
   nickname: localStorage.getItem('nickname') || '',
   name: localStorage.getItem('name') || '',
   surname: localStorage.getItem('surname') || '',
-  sex: localStorage.getItem('sex ') || '',
+  sex: localStorage.getItem('sex') || '',
   advantages: JSON.parse(localStorage.getItem('advantages') || '[]'),
   checkboxGroup: JSON.parse(
     localStorage.getItem('checkboxGroup') || '[false, false, false]'

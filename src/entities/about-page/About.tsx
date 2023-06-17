@@ -5,6 +5,19 @@ import { useNavigate } from 'react-router-dom'
 import { useActions } from '../../hooks/actions'
 import './about.scss'
 import { useAppSelector } from '../../hooks/redux'
+import { useSendDataMutation } from '../../store/user/user.api'
+import {
+  phone,
+  email,
+  nickname,
+  name,
+  surname,
+  sex,
+  advantages,
+  checkboxGroup,
+  radioGroup,
+  aboutData,
+} from '../../assets/const'
 
 const About: React.FC = () => {
   const navigate = useNavigate()
@@ -18,6 +31,8 @@ const About: React.FC = () => {
   const aboutRef = useRef<HTMLTextAreaElement | null>(null)
 
   const { setisSendingData } = useActions()
+
+  const [sendData, { data }] = useSendDataMutation()
 
   const handleDone = () => {
     navigate('/front-cc-project/')
@@ -38,11 +53,34 @@ const About: React.FC = () => {
 
   const characterCount = about.replace(/\s/g, '').length
 
+  const startSendProcess = async () => {
+    try {
+      await sendData({
+        phone,
+        email,
+        nickname,
+        name,
+        surname,
+        sex,
+        advantages,
+        checkboxGroup,
+        radioGroup,
+        aboutData,
+      })
+      setisSendingData(true)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     if (aboutRef.current !== null && about === '') {
       aboutRef.current.focus()
     }
   }, [])
+
+  console.log(setIsFormCompleted)
+  console.log(setIsError)
 
   return (
     <div className="about-wrapper">
@@ -65,13 +103,14 @@ const About: React.FC = () => {
         pathToBack={'/front-cc-project/advantages'}
         isDone={true}
         isFormCompleted={isFormCompleted}
+        startSendProcess={startSendProcess}
       />
 
       {isError && (
         <Modal>
           <div className="modal-content">
             <div className="title error">
-              <p>Ошибка</p>
+              <p>{data?.message}</p>
 
               <button id="cross" onClick={() => setisSendingData(false)} />
 
@@ -95,7 +134,7 @@ const About: React.FC = () => {
         <Modal>
           <div className="modal-content">
             <div className="title">
-              <p>Форма успешно отправлена</p>
+              <p>{data?.message}</p>
             </div>
 
             <div className="result-pic">
