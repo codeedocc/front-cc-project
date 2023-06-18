@@ -1,6 +1,6 @@
-import Advantages from './advantages-page/Advantages'
-import FullName from './fullName-page/FullName'
-import About from './about-page/About'
-import Home from './home-page/Home'
+import SecondLevel from './second_level/SecondLevel'
+import FirstLevel from './first_level/FirstLevel'
+import ThirdLevel from './third_level/ThirdLevel'
+import Home from './home_page/Home'
 
-export { About, Advantages, FullName, Home }
+export { ThirdLevel, SecondLevel, FirstLevel, Home }

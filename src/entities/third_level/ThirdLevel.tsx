@@ -5,33 +5,31 @@ import { useSendDataMutation } from '../../store/user/user.api'
 import { useAppSelector } from '../../hooks/redux'
 import { useNavigate } from 'react-router-dom'
 import { useActions } from '../../hooks/actions'
-import './about.scss'
-import {
-  phone,
-  email,
-  nickname,
-  name,
-  surname,
-  sex,
-  advantages,
-  checkboxGroup,
-  radioGroup,
-  aboutData,
-} from '../../assets/const'
+import './thirdLevel.scss'
 
-const About: React.FC = () => {
+const ThirdLevel: React.FC = () => {
   const navigate = useNavigate()
 
   const [isFormCompleted] = useState<boolean>(true)
-  const [isError] = useState<boolean>(false)
 
   const aboutRef = useRef<HTMLTextAreaElement | null>(null)
 
-  const { about } = useAppSelector((state) => state.user)
+  const {
+    phone,
+    email,
+    nickname,
+    name,
+    surname,
+    sex,
+    advantages,
+    checkboxGroup,
+    radioGroup,
+    about,
+  } = useAppSelector((state) => state.user)
 
   const { setisSendingData, setAbout } = useActions()
 
-  const [sendData, { data }] = useSendDataMutation()
+  const [sendData, { data, isSuccess, isError }] = useSendDataMutation()
 
   const handleDone = () => {
     setisSendingData(false)
@@ -64,7 +62,7 @@ const About: React.FC = () => {
         advantages,
         checkboxGroup,
         radioGroup,
-        aboutData,
+        about,
       })
       setisSendingData(true)
     } catch (error) {
@@ -96,7 +94,7 @@ const About: React.FC = () => {
       </div>
 
       <BackNextButtons
-        pathToBack={'/front-cc-project/advantages'}
+        pathToBack={'/front-cc-project/second-level'}
         isDone={true}
         isFormCompleted={isFormCompleted}
         startSendProcess={startSendProcess}
@@ -126,7 +124,7 @@ const About: React.FC = () => {
         </Modal>
       )}
 
-      {!isError && (
+      {isSuccess && (
         <Modal>
           <div className="modal-content">
             <div className="title">
@@ -146,4 +144,4 @@ const About: React.FC = () => {
   )
 }
 
-export default About
+export default ThirdLevel

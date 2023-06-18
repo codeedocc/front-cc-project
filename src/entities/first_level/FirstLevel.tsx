@@ -1,15 +1,16 @@
 import { BackNextButtons, InfoInputs, ProgressBar } from '../../shared'
-import { SCHEMA_FULLNAME_PAGE } from '../../assets/const'
+
+import { SCHEMA_FIRST_LEVEL_PAGE } from '../../assets/const/schemas'
 import Select, { SingleValue } from 'react-select'
 import { useAppSelector } from '../../hooks/redux'
-import { selectOptions } from '../../assets/const'
+import { selectOptions } from '../../assets/const/select_options'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useActions } from '../../hooks/actions'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import './fullName.scss'
+import './firstLevel.scss'
 
-const FullName: React.FC = () => {
+const FirstLevel: React.FC = () => {
   const { nickname, name, surname, sex } = useAppSelector((state) => state.user)
 
   const { setNickname, setName, setSurname, setSex } = useActions()
@@ -35,7 +36,7 @@ const FullName: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(SCHEMA_FULLNAME_PAGE),
+    resolver: yupResolver(SCHEMA_FIRST_LEVEL_PAGE),
     defaultValues: {
       nickname: nickname,
       name: name,
@@ -130,11 +131,11 @@ const FullName: React.FC = () => {
 
       <BackNextButtons
         pathToBack={'/front-cc-project/'}
-        pathToNext={'/front-cc-project/advantages'}
+        pathToNext={'/front-cc-project/second-level'}
         isFormCompleted={isFormCompleted}
       />
     </div>
   )
 }
 
-export default FullName
+export default FirstLevel

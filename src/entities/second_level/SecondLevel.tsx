@@ -3,9 +3,9 @@ import { useAppSelector } from '../../hooks/redux'
 import { useActions } from '../../hooks/actions'
 import { plus_icon } from '../../assets/images'
 import { useState } from 'react'
-import './advantages.scss'
+import './secondLevel.scss'
 
-const Advantages: React.FC = () => {
+const SecondLevel: React.FC = () => {
   const [isFormCompleted] = useState<boolean>(true)
   const [nextId, setNextId] = useState<number>(1)
 
@@ -112,12 +112,12 @@ const Advantages: React.FC = () => {
       </div>
 
       <BackNextButtons
-        pathToBack={'/front-cc-project/fullName'}
-        pathToNext={'/front-cc-project/about'}
+        pathToBack={'/front-cc-project/first-level'}
+        pathToNext={'/front-cc-project/third-level'}
         isFormCompleted={isFormCompleted}
       />
     </div>
   )
 }
 
-export default Advantages
+export default SecondLevel

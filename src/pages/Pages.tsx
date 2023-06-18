@@ -1,4 +1,4 @@
-import { About, Advantages, FullName, Home } from '../entities'
+import { ThirdLevel, SecondLevel, FirstLevel, Home } from '../entities'
 import { Routes, Route } from 'react-router-dom'
 
 const Pages: React.FC = () => {
@@ -6,9 +6,12 @@ const Pages: React.FC = () => {
     <div className="main-container">
       <Routes>
         <Route path="/front-cc-project/" element={<Home />} />
-        <Route path="/front-cc-project/fullName" element={<FullName />} />
-        <Route path="/front-cc-project/advantages" element={<Advantages />} />
-        <Route path="/front-cc-project/about" element={<About />} />
+        <Route path="/front-cc-project/first-level" element={<FirstLevel />} />
+        <Route
+          path="/front-cc-project/second-level"
+          element={<SecondLevel />}
+        />
+        <Route path="/front-cc-project/third-level" element={<ThirdLevel />} />
       </Routes>
     </div>
   )

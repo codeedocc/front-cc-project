@@ -1,6 +1,6 @@
 import { folder_icon, user_avatar } from '../../assets/images'
 import { InfoInputs, MaskedInput } from '../../shared'
-import { SCHEMA_HOME_PAGE } from '../../assets/const'
+import { SCHEMA_HOME_PAGE } from '../../assets/const/schemas'
 import { useAppSelector } from '../../hooks/redux'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
     setEmail(data.email)
     setPhone(data.phone)
 
-    navigate('/front-cc-project/fullName')
+    navigate('/front-cc-project/first-level')
   }
 
   return (

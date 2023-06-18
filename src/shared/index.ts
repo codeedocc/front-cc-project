@@ -1,8 +1,8 @@
-import AdvantagesInput from './advantagesInput/AdvantagesInput'
-import BackNextButtons from './backNextButtons/BackNextButtons'
-import ProgressBar from './progressBar/ProgressBar'
-import MaskedInput from './maskedInput/MaskedInput'
-import InfoInputs from './infoInputs/InfoInputs'
+import AdvantagesInput from './advantages_input/AdvantagesInput'
+import BackNextButtons from './back_next_btn/BackNextButtons'
+import ProgressBar from './progress_bar/ProgressBar'
+import MaskedInput from './masked_input/MaskedInput'
+import InfoInputs from './info_inputs/InfoInputs'
 import Modal from './modal/Modal'
 
 export {
