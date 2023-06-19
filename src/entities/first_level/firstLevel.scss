@@ -18,21 +18,12 @@
       margin-left: 16px;
     }
 
-    input {
-      width: 40%;
-      background: #fff;
-
-      @include tablet {
-        width: 90%;
-      }
-    }
-
     .select {
-      width: calc(40% + 20px);
+      width: calc(40%);
       height: 44px;
 
       @include tablet {
-        width: calc(90% + 20px);
+        width: calc(90%);
       }
     }
   }

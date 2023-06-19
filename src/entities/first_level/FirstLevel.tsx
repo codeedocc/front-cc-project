@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useActions } from '../../hooks/actions'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Input from '@mui/material/Input'
 import './firstLevel.scss'
 
 const FirstLevel: React.FC = () => {
@@ -73,11 +74,7 @@ const FirstLevel: React.FC = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <span>
               <p>Nickname</p>
-              <input
-                type="text"
-                {...register('nickname')}
-                placeholder="Введите nickname"
-              />
+              <Input {...register('nickname')} placeholder="Введите nickname" />
 
               {errors.nickname && (
                 <p className="error">{errors.nickname.message}</p>
@@ -86,22 +83,14 @@ const FirstLevel: React.FC = () => {
 
             <span>
               <p>Name</p>
-              <input
-                type="text"
-                {...register('name')}
-                placeholder="Введите name"
-              />
+              <Input {...register('name')} placeholder="Введите name" />
 
               {errors.name && <p className="error">{errors.name.message}</p>}
             </span>
 
             <span>
               <p>Surname</p>
-              <input
-                type="text"
-                {...register('surname')}
-                placeholder="Введите surname"
-              />
+              <Input {...register('surname')} placeholder="Введите surname" />
 
               {errors.surname && (
                 <p className="error">{errors.surname.message}</p>

@@ -69,7 +69,7 @@ const SecondLevel: React.FC = () => {
 
         {Array.isArray(checkboxGroup) &&
           checkboxGroup.map((input, index) => (
-            <div key={index}>
+            <div key={index} className="checkbox-row">
               <input
                 type="checkbox"
                 id={`checkbox${index + 1}`}
@@ -82,6 +82,7 @@ const SecondLevel: React.FC = () => {
                   ])
                 }
               />
+              <p>{index + 1}</p>
               <br />
             </div>
           ))}
@@ -92,7 +93,7 @@ const SecondLevel: React.FC = () => {
 
         {Array.isArray(radioGroup) &&
           radioGroup.map((input, index) => (
-            <div key={index}>
+            <div key={index} className="radiogroup-row">
               <input
                 type="radio"
                 id={`radio${index + 1}`}
@@ -106,6 +107,8 @@ const SecondLevel: React.FC = () => {
                   ])
                 }
               />
+              <p>{index + 1}</p>
+
               <br />
             </div>
           ))}

@@ -15,13 +15,20 @@
   .user-avatar {
     padding-top: 25px;
 
-    img {
+    .avatar {
+      background: #ccf;
       height: 80px;
       width: 80px;
-
       border-radius: 99%;
-      box-shadow: 0 0 0 2px #fff;
-      object-fit: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-family: 'SB Sans Text Mono';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 52px;
 
       @include tablet {
         height: 60px;
@@ -62,9 +69,16 @@
         gap: 7px;
         align-items: center;
         cursor: pointer;
+        text-decoration: none;
+        color: inherit;
 
         &:visited {
           color: white;
+        }
+
+        &:hover {
+          text-decoration: none;
+          color: inherit;
         }
 
         p {

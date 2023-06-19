@@ -1,4 +1,5 @@
 import { trash_icon } from '../../assets/images'
+import Input from '@mui/material/Input'
 
 const AdvantagesInput: React.FC<IAdvantagesInput> = ({
   id,
@@ -17,8 +18,7 @@ const AdvantagesInput: React.FC<IAdvantagesInput> = ({
   return (
     <>
       <span>
-        <input
-          type="text"
+        <Input
           placeholder="Начните печатать..."
           value={value}
           onChange={handleChange}

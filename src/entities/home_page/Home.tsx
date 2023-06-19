@@ -1,11 +1,12 @@
-import { folder_icon, user_avatar } from '../../assets/images'
-import { InfoInputs, MaskedInput } from '../../shared'
+import { folder_icon } from '../../assets/images'
 import { SCHEMA_HOME_PAGE } from '../../assets/const/schemas'
 import { useAppSelector } from '../../hooks/redux'
+import { InfoInputs, MaskComponent } from '../../shared'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
 import { useActions } from '../../hooks/actions'
 import { useForm } from 'react-hook-form'
+import Input from '@mui/material/Input'
 import './home.scss'
 
 const Home: React.FC = () => {
@@ -37,7 +38,7 @@ const Home: React.FC = () => {
     <>
       <div className="user-header">
         <div className="user-avatar">
-          <img src={user_avatar} alt="user-av" />
+          <div className="avatar">РШ</div>
         </div>
 
         <div className="user-info">
@@ -69,18 +70,19 @@ const Home: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <span>
             <p>Номер телефона</p>
-            <MaskedInput register={register} />
+            <Input
+              {...register('phone')}
+              placeholder="+7 (999) 999-99-99"
+              inputComponent={MaskComponent}
+            />
 
             {errors.phone && <p className="error">{errors.phone.message}</p>}
           </span>
 
           <span>
             <p>Email</p>
-            <input
-              type="email"
-              {...register('email')}
-              placeholder="Введите email"
-            />
+            <Input {...register('email')} placeholder="example@mail.ru" />
+
             {errors.email && <p className="error">{errors.email.message}</p>}
           </span>
 

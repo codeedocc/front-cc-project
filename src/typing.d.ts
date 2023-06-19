@@ -17,7 +17,7 @@ interface IBackNextButtons {
 }
 
 interface IInitialState {
-  isSendingData: boolean
+  isModalOpen: boolean
 }
 
 interface IUser {
@@ -59,4 +59,8 @@ interface IRegister {
 
 interface IInfoInputs {
   children: ReactNode
+}
+
+interface MaskedInputProps {
+  register: any
 }

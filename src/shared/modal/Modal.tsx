@@ -3,14 +3,14 @@ import { useActions } from '../../hooks/actions'
 import './modal.scss'
 
 const Modal: React.FC<IModal> = ({ children }) => {
-  const { isSendingData } = useAppSelector((state) => state.modal)
+  const { isModalOpen } = useAppSelector((state) => state.modal)
 
-  const { closeModal } = useActions()
+  const { setIsModalOpen } = useActions()
 
   return (
     <div
-      className={isSendingData ? 'modal-wrapper open' : 'modal-wrapper'}
-      onClick={() => closeModal(false)}
+      className={isModalOpen ? 'modal-wrapper open' : 'modal-wrapper'}
+      onClick={() => setIsModalOpen(false)}
     >
       <div className={'modal'} onClick={(e) => e.stopPropagation()}>
         {children}

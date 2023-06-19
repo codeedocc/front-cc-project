@@ -27,12 +27,12 @@ const ThirdLevel: React.FC = () => {
     about,
   } = useAppSelector((state) => state.user)
 
-  const { setisSendingData, setAbout } = useActions()
+  const { setIsModalOpen, setAbout } = useActions()
 
   const [sendData, { data, isSuccess, isError }] = useSendDataMutation()
 
   const handleDone = () => {
-    setisSendingData(false)
+    setIsModalOpen(false)
     navigate('/front-cc-project/')
   }
 
@@ -64,7 +64,7 @@ const ThirdLevel: React.FC = () => {
         radioGroup,
         about,
       })
-      setisSendingData(true)
+      setIsModalOpen(true)
     } catch (error) {
       console.error(error)
     }
@@ -90,7 +90,7 @@ const ThirdLevel: React.FC = () => {
           ref={aboutRef}
         />
 
-        <span className="character-counter">{characterCount}/200</span>
+        <span className="character-counter">{characterCount} / 200</span>
       </div>
 
       <BackNextButtons
@@ -106,7 +106,7 @@ const ThirdLevel: React.FC = () => {
             <div className="title error">
               <p>{data?.message}</p>
 
-              <button id="cross" onClick={() => setisSendingData(false)} />
+              <button id="cross" onClick={() => setIsModalOpen(false)} />
 
               <label htmlFor="cross">
                 <img src={cross_icon} alt="" />
@@ -118,7 +118,7 @@ const ThirdLevel: React.FC = () => {
             </div>
 
             <div className="back-button error">
-              <button onClick={() => setisSendingData(false)}>Закрыть</button>
+              <button onClick={() => setIsModalOpen(false)}>Закрыть</button>
             </div>
           </div>
         </Modal>

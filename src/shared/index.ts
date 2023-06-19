@@ -1,7 +1,7 @@
 import AdvantagesInput from './advantages_input/AdvantagesInput'
 import BackNextButtons from './back_next_btn/BackNextButtons'
+import MaskComponent from './phone_mask/PhoneMask'
 import ProgressBar from './progress_bar/ProgressBar'
-import MaskedInput from './masked_input/MaskedInput'
 import InfoInputs from './info_inputs/InfoInputs'
 import Modal from './modal/Modal'
 
@@ -11,5 +11,5 @@ export {
   ProgressBar,
   InfoInputs,
   Modal,
-  MaskedInput,
+  MaskComponent,
 }
