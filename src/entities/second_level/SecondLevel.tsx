@@ -1,13 +1,13 @@
-import { AdvantagesInput, BackNextButtons, ProgressBar } from '../../shared'
+import { BackNextButtons, ProgressBar } from '../../shared'
+import { plus_icon, trash_icon } from '../../assets/images'
 import { useAppSelector } from '../../hooks/redux'
 import { useActions } from '../../hooks/actions'
-import { plus_icon } from '../../assets/images'
 import { useState } from 'react'
+import Input from '@mui/material/Input'
 import './secondLevel.scss'
 
 const SecondLevel: React.FC = () => {
   const [isFormCompleted] = useState<boolean>(true)
-  const [nextId, setNextId] = useState<number>(1)
 
   const { advantages, checkboxGroup, radioGroup } = useAppSelector(
     (state) => state.user
@@ -15,27 +15,18 @@ const SecondLevel: React.FC = () => {
 
   const { setAdvantages, setCheckboxGroup, setRadioGroup } = useActions()
 
-  const handleAddAdvantage = () => {
-    if (advantages.length < 3) {
-      setAdvantages([...advantages, { id: `advantage-${nextId}`, value: '' }])
-      setNextId(nextId + 1)
-    } else {
-      return
-    }
+  const handleAddInput = () => {
+    setAdvantages([...advantages, ''])
   }
 
-  const handleRemoveAdvantage = (id: string) => {
-    const updatedAdvantages = advantages.filter(
-      (advantage) => advantage.id !== id.toString()
-    )
-    setAdvantages(updatedAdvantages)
+  const handleDeleteInput = (index: any) => {
+    setAdvantages(advantages.filter((_, i) => i !== index))
   }
 
-  const handleChangeAdvantage = (id: string, value: string) => {
-    const updatedAdvantages = advantages.map((advantage) =>
-      advantage.id === id ? { ...advantage, value } : advantage
-    )
-    setAdvantages(updatedAdvantages)
+  const handleInputChange = (index: any, value: any) => {
+    const newInputs = [...advantages]
+    newInputs[index] = value
+    setAdvantages(newInputs)
   }
 
   return (
@@ -45,19 +36,23 @@ const SecondLevel: React.FC = () => {
       <div className="advantages-inputs">
         <p>Advantages</p>
 
-        {advantages.map((advantage, index) => (
-          <AdvantagesInput
-            key={index}
-            id={advantage.id}
-            value={advantage.value}
-            onChange={handleChangeAdvantage}
-            onRemove={handleRemoveAdvantage}
-          />
+        {advantages.map((input, index) => (
+          <div key={index}>
+            <Input
+              type="text"
+              value={input}
+              onChange={(e) => handleInputChange(index, e.target.value)}
+            />
+
+            <button onClick={() => handleDeleteInput(index)}>
+              <img src={trash_icon} alt="" />
+            </button>
+          </div>
         ))}
 
         <div className="add-button">
           {advantages.length !== 3 && (
-            <button onClick={handleAddAdvantage}>
+            <button onClick={handleAddInput}>
               <img src={plus_icon} alt="" />
             </button>
           )}

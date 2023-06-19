@@ -15,7 +15,7 @@ export const userApi = createApi({
         name: string | null
         surname: string | null
         sex: string | null
-        advantages: { id: string; value: string }[]
+        advantages: string[]
         checkboxGroup: boolean[]
         radioGroup: boolean[]
         about: string | null

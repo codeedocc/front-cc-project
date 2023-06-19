@@ -27,10 +27,7 @@ interface IUser {
   name: string
   surname: string
   sex: string
-  advantages: {
-    id: string
-    value: string
-  }[]
+  advantages: string[]
   checkboxGroup: boolean[]
   radioGroup: boolean[]
   about: string

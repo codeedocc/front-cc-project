@@ -11,12 +11,11 @@
   border-bottom: 0.1px solid #8a858527;
   margin-right: 24px;
   margin-left: 24px;
+  align-items: center;
 
   .user-avatar {
-    padding-top: 25px;
-
     .avatar {
-      background: #ccf;
+      background: #d5e4f7;
       height: 80px;
       width: 80px;
       border-radius: 99%;
@@ -33,6 +32,7 @@
       @include tablet {
         height: 60px;
         width: 60px;
+        font-size: 25px;
       }
     }
   }
@@ -41,7 +41,6 @@
     display: flex;
     flex-direction: column;
     padding-left: 24px;
-    padding-top: 25px;
 
     @include tablet {
       padding-left: 15px;
