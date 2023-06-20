@@ -1,19 +1,23 @@
-import { folder_icon } from '../../assets/images'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
+import { InfoInputs, MaskComponent } from '../../shared'
 import { SCHEMA_HOME_PAGE } from '../../assets/const/schemas'
 import { useAppSelector } from '../../hooks/redux'
-import { InfoInputs, MaskComponent } from '../../shared'
+import { folder_icon } from '../../assets/images'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useNavigate } from 'react-router-dom'
 import { useActions } from '../../hooks/actions'
+import { USER_LINKS } from '../../assets/const/user_links'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '@mui/material/Input'
 import './home.scss'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const { phone, email } = useAppSelector((state) => state.user)
-  const { setPhone, setEmail } = useActions()
+
+  const { setPhone, setEmail, setCurrentPage } = useActions()
 
   const {
     register,
@@ -34,6 +38,10 @@ const Home: React.FC = () => {
     navigate('/front-cc-project/first-level')
   }
 
+  useEffect(() => {
+    setCurrentPage(location.pathname)
+  }, [location])
+
   return (
     <>
       <div className="user-header">
@@ -45,23 +53,20 @@ const Home: React.FC = () => {
           <p>Руслан Шарифуллин</p>
 
           <div className="user-links">
-            <a href="https://t.me/ruslan_hehe" target="_blank">
+            <Link to={USER_LINKS.telegram} target="_blank" className="link">
               <img src={folder_icon} alt="telegram" />
               <p>Telegram</p>
-            </a>
+            </Link>
 
-            <a href="https://github.com/codeedocc" target="_blank">
+            <Link to={USER_LINKS.github} target="_blank" className="link">
               <img src={folder_icon} alt="github" />
               <p>Github</p>
-            </a>
+            </Link>
 
-            <a
-              href="https://kazan.hh.ru/resume/9d5b38ceff0b73f0810039ed1f616c34593872"
-              target="_blank"
-            >
+            <Link to={USER_LINKS.hh} target="_blank" className="link">
               <img src={folder_icon} alt="resume" />
               <p>Resume</p>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

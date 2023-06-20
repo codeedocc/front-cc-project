@@ -48,13 +48,18 @@
     background: rgb(255, 255, 255);
     position: fixed;
     width: 80%;
-    height: 90%;
-    border-radius: 12px 12px 0px 0px;
+    height: 75%;
+    border-radius: 12px;
+    overflow-y: auto;
 
     margin-top: 2%;
     margin-bottom: 10%;
     margin-left: 10%;
     margin-right: 10%;
+
+    &.high {
+      height: 90%;
+    }
 
     .save-form-button {
       padding-top: 40px;

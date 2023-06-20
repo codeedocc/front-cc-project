@@ -2,11 +2,11 @@ import { BackNextButtons, InfoInputs, ProgressBar } from '../../shared'
 
 import { SCHEMA_FIRST_LEVEL_PAGE } from '../../assets/const/schemas'
 import Select, { SingleValue } from 'react-select'
+import { useState, useEffect } from 'react'
 import { useAppSelector } from '../../hooks/redux'
 import { selectOptions } from '../../assets/const/select_options'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useActions } from '../../hooks/actions'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '@mui/material/Input'
 import './firstLevel.scss'
@@ -14,7 +14,8 @@ import './firstLevel.scss'
 const FirstLevel: React.FC = () => {
   const { nickname, name, surname, sex } = useAppSelector((state) => state.user)
 
-  const { setNickname, setName, setSurname, setSex } = useActions()
+  const { setNickname, setName, setSurname, setSex, setCurrentPage } =
+    useActions()
 
   const [selectedOption, setSelectedOption] = useState<{
     value: string
@@ -64,6 +65,10 @@ const FirstLevel: React.FC = () => {
     setSurname(data.surname)
     setSex(data.sex)
   }
+
+  useEffect(() => {
+    setCurrentPage(location.pathname)
+  }, [location])
 
   return (
     <div className="fullName-wrapper">

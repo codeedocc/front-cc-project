@@ -27,7 +27,7 @@ const ThirdLevel: React.FC = () => {
     about,
   } = useAppSelector((state) => state.user)
 
-  const { setIsModalOpen, setAbout } = useActions()
+  const { setIsModalOpen, setAbout, setCurrentPage } = useActions()
 
   const [sendData, { data, isSuccess, isError }] = useSendDataMutation()
 
@@ -75,6 +75,10 @@ const ThirdLevel: React.FC = () => {
       aboutRef.current.focus()
     }
   }, [])
+
+  useEffect(() => {
+    setCurrentPage(location.pathname)
+  }, [location])
 
   return (
     <div className="about-wrapper">

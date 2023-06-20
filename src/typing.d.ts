@@ -61,3 +61,14 @@ interface IInfoInputs {
 interface MaskedInputProps {
   register: any
 }
+
+interface SelectOptions {
+  value: string
+  label: string
+}
+
+interface USER_LINKS {
+  telegram: string
+  github: string
+  hh: string
+}

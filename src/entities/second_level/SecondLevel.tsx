@@ -1,8 +1,8 @@
 import { BackNextButtons, ProgressBar } from '../../shared'
 import { plus_icon, trash_icon } from '../../assets/images'
+import { useState, useEffect } from 'react'
 import { useAppSelector } from '../../hooks/redux'
 import { useActions } from '../../hooks/actions'
-import { useState } from 'react'
 import Input from '@mui/material/Input'
 import './secondLevel.scss'
 
@@ -13,21 +13,26 @@ const SecondLevel: React.FC = () => {
     (state) => state.user
   )
 
-  const { setAdvantages, setCheckboxGroup, setRadioGroup } = useActions()
+  const { setAdvantages, setCheckboxGroup, setRadioGroup, setCurrentPage } =
+    useActions()
 
   const handleAddInput = () => {
     setAdvantages([...advantages, ''])
   }
 
-  const handleDeleteInput = (index: any) => {
+  const handleDeleteInput = (index: number) => {
     setAdvantages(advantages.filter((_, i) => i !== index))
   }
 
-  const handleInputChange = (index: any, value: any) => {
+  const handleInputChange = (index: number, value: string) => {
     const newInputs = [...advantages]
     newInputs[index] = value
     setAdvantages(newInputs)
   }
+
+  useEffect(() => {
+    setCurrentPage(location.pathname)
+  }, [location])
 
   return (
     <div className="avantages-wrapper">
