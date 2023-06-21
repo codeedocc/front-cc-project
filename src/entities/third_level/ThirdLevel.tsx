@@ -1,5 +1,5 @@
+import { BackNextButtons, Loader, Modal, ProgressBar } from '../../shared'
 import { cross_icon, error_icon, success_icon } from '../../assets/images'
-import { BackNextButtons, Modal, ProgressBar } from '../../shared'
 import { useEffect, useRef, useState } from 'react'
 import { useSendDataMutation } from '../../store/user/user.api'
 import { useAppSelector } from '../../hooks/redux'
@@ -29,7 +29,8 @@ const ThirdLevel: React.FC = () => {
 
   const { setIsModalOpen, setAbout, setCurrentPage } = useActions()
 
-  const [sendData, { data, isSuccess, isError }] = useSendDataMutation()
+  const [sendData, { data, isSuccess, isError, isLoading }] =
+    useSendDataMutation()
 
   const handleDone = () => {
     setIsModalOpen(false)
@@ -52,6 +53,7 @@ const ThirdLevel: React.FC = () => {
 
   const startSendProcess = async () => {
     try {
+      setIsModalOpen(true)
       await sendData({
         phone,
         email,
@@ -64,7 +66,6 @@ const ThirdLevel: React.FC = () => {
         radioGroup,
         about,
       })
-      setIsModalOpen(true)
     } catch (error) {
       console.error(error)
     }
@@ -104,6 +105,37 @@ const ThirdLevel: React.FC = () => {
         startSendProcess={startSendProcess}
       />
 
+      {isLoading && (
+        <Modal>
+          <div className="modal-content">
+            <div className="title">
+              <p>Идёт отправка данных...</p>
+            </div>
+
+            <div className="loader-pic">
+              <Loader />
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {isSuccess && (
+        <Modal>
+          <div className="modal-content">
+            <div className="title">
+              <p>{data?.message}</p>
+            </div>
+
+            <div className="result-pic">
+              <img src={success_icon} alt="" />
+            </div>
+            <div className="back-button">
+              <button onClick={() => handleDone()}>На главную</button>
+            </div>
+          </div>
+        </Modal>
+      )}
+
       {isError && (
         <Modal>
           <div className="modal-content">
@@ -123,23 +155,6 @@ const ThirdLevel: React.FC = () => {
 
             <div className="back-button error">
               <button onClick={() => setIsModalOpen(false)}>Закрыть</button>
-            </div>
-          </div>
-        </Modal>
-      )}
-
-      {isSuccess && (
-        <Modal>
-          <div className="modal-content">
-            <div className="title">
-              <p>{data?.message}</p>
-            </div>
-
-            <div className="result-pic">
-              <img src={success_icon} alt="" />
-            </div>
-            <div className="back-button">
-              <button onClick={() => handleDone()}>На главную</button>
             </div>
           </div>
         </Modal>

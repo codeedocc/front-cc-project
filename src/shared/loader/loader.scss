@@ -1,0 +1,21 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  svg {
+    height: 40px;
+    width: 40px;
+    --tw-text-opacity: 1;
+    color: rgb(229 231 235 / var(--tw-text-opacity));
+    animation: spin 1s linear infinite;
+    fill: #5558fa;
+  }
+}
