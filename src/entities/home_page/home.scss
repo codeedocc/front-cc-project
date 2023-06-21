@@ -5,13 +5,14 @@
 }
 
 .user-header {
-  height: 16%;
   border-radius: 12px 12px 0px 0px;
   display: flex;
   border-bottom: 0.1px solid #8a858527;
   margin-right: 24px;
   margin-left: 24px;
   align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   .user-avatar {
     .avatar {
@@ -112,6 +113,7 @@
 
 .start-button {
   padding-top: 40px;
+  padding-bottom: 30px;
 
   button {
     background: #5558fa;
